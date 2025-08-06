@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Toxicology Database</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-flask"></i> Forensic Toxicology Database</h1>
+            <p class="subtitle">Comprehensive database of substances, metabolites, and toxicological reference values</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-controls">
+                <div class="search-input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search substances, common names, or descriptions...">
+                </div>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="pharmaceutical">Pharmaceuticals</option>
+                    <option value="narcotic">Narcotic Stimulants</option>
+                    <option value="synthetic">Synthetic Drugs</option>
+                </select>
+                <button id="clearFilters" class="clear-btn">
+                    <i class="fas fa-times"></i> Clear
+                </button>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="substances-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-list"></i> Substances</h2>
+                    <div class="results-count">
+                        <span id="resultsCount">0 substances found</span>
+                    </div>
+                </div>
+                <div id="substancesList" class="substances-list">
+                    <!-- Substances will be loaded here -->
+                </div>
+            </div>
+
+            <div class="detail-panel">
+                <div id="substanceDetail" class="substance-detail">
+                    <div class="welcome-message">
+                        <i class="fas fa-arrow-left"></i>
+                        <h3>Select a substance to view details</h3>
+                        <p>Choose a substance from the left panel to view comprehensive information including metabolites, therapeutic ranges, and toxicological data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dose Analysis Modal -->
+        <div id="doseModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-calculator"></i> Dose Analysis</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="measuredLevel">Measured Level:</label>
+                        <input type="number" id="measuredLevel" step="0.001" placeholder="Enter measured concentration">
+                        <span id="doseUnit" class="unit-label">mg/L</span>
+                    </div>
+                    <button id="analyzeDose" class="analyze-btn">
+                        <i class="fas fa-chart-line"></i> Analyze
+                    </button>
+                    <div id="analysisResult" class="analysis-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
